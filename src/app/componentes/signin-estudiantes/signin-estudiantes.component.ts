@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Estudiante } from '../../shared/Estudiante';
 
 @Component({
   selector: 'app-signin-estudiantes',
@@ -7,9 +9,99 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninEstudiantesComponent implements OnInit {
 
-  constructor() { }
+  FormularioEstudiante: FormGroup;
+  FormularioEstudianteDto: Estudiante;
+
+  @ViewChild('ffform') FormularioEstudianteDirectiva;
+
+  formErrors = {
+    'Nombre': '',
+    'Apellido': '',
+    'Correo': '',
+    'Contrasenia': ''
+  };
+
+  validationMessages = {
+    'Nombre': {
+      'required' : 'El  nombre de estudiante es requerido.',
+      'minlength': 'El nombre de estudiante requiere 2 caracteres como minimo.',
+      'maxlength': 'El nombre de estudiante requiere 25 caracteres como maximo.'
+    },
+    'Apellido': {
+      'required' : 'El apellido es requerido.',
+      'minlength': 'El apellido equiere 2 caracteres como minimo.',
+      'maxlength': 'El apellido requiere 25 caracteres como maximo.'
+    },
+    'Correo': {
+      'required' : 'El  nombre de usuario de empresa es requerido.',
+      'email'    : 'El correo debe seguir el patron indicado'
+    },
+    'Contrasenia': {
+      'required' : 'El contraseña es requerida.',
+      'minlength': 'La contraseña requiere 5 caracteres como minimo.',
+      'maxlength': 'La contraseña requiere 25 caracteres como maximo.'
+    },
+  };
+
+  constructor(
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit(): void {
+    this.createForm();
+  }
+
+  createForm(): void {
+    this.FormularioEstudiante = this.fb.group({
+      Nombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      Apellido: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(25)] ],
+      Correo: ['', [Validators.required, Validators.email ]],
+      Contrasenia: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(25)] ]
+    });
+
+    this.FormularioEstudiante.valueChanges //valueChanges is an observable
+      .subscribe(data => this.onValueChanged(data));
+
+    this.onValueChanged(); // (re)set form validation messages 
+
+  }
+
+  onValueChanged(data?: any) { //parameter is optional
+    if (!this.FormularioEstudiante) { return; } //has been created?
+    
+    const form = this.FormularioEstudiante;
+    
+    for (const field in this.formErrors) {
+      if (this.formErrors.hasOwnProperty(field)) {//make sure that the object contain the property
+        
+        this.formErrors[field] = ''; // clear previous error message (if any)
+
+        const control = form.get(field); //const form = this.feedbackForm;
+
+        if (control && control.dirty && !control.valid) {
+          const messages = this.validationMessages[field];
+          for (const key in control.errors) { // const control = form.get(field);
+            if (control.errors.hasOwnProperty(key)) {
+              this.formErrors[field] += messages[key] + ' ';
+            }
+          }
+        }
+      }
+    }
+  }
+
+  onSubmit() {
+    this.FormularioEstudianteDto = this.FormularioEstudiante.value;
+    console.log(this.FormularioEstudianteDto);
+    this.FormularioEstudiante.reset({
+      Nombre: '',
+      Apellido: '',
+      Correo: '',
+      Contrasenia: ''
+    });
+
+    this.FormularioEstudianteDirectiva.resetForm(); //ensure a completely reset
+    //#fform="ngForm"
   }
 
 }

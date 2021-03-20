@@ -3,37 +3,54 @@
         <div class="card">
             <div class="card-header text-center">Registro Empresa</div>
             <div class="card-body">
-                <form>
+
+                <!-- FORMULARIO-->
+                <form novalidate [formGroup]="FormularioEmpresa" #fform="ngForm" (ngSubmit)="onSubmit()">
+                    
                     <div class="mb-3">
                         <label class="form-label">Nombre de Empresa</label>
-                        <input type="text" class="form-control">
+                        <input formControlName="NombreDeEmpresa" type="text" class="form-control">
+                        <div *ngIf="formErrors.NombreDeEmpresa" class="alert alert-danger mt-2" role="alert">{{formErrors.NombreDeEmpresa}}</div>
                     </div>
+
                     <div class="mb-3">
                         <label for="" class="form-label">Locacion</label>
-                        <input type="text" class="form-control">
+                        <input formControlName="Locacion" type="text" class="form-control">
+                        <div *ngIf="formErrors.Locacion" class="alert alert-danger mt-2" role="alert">{{formErrors.Locacion}}</div>
                     </div>
+
                     <div class="mb-3">
                         <label for="" class="form-label">RUC</label>
-                        <input type="text" class="form-control">
+                        <input formControlName="RUC" type="number" class="form-control">
+                        <div *ngIf="formErrors.RUC" class="alert alert-danger mt-2" role="alert">{{formErrors.RUC}}</div>
                     </div>
+
                     <div class="mb-3">
                         <label for="" class="form-label">Sitio Web</label>
-                        <input type="text" class="form-control" placeholder="https://website.com">
+                        <input formControlName="SitioWeb" type="text" class="form-control" placeholder="https://website.com">
+                        <div *ngIf="formErrors.SitioWeb" class="alert alert-danger mt-2" role="alert">{{formErrors.SitioWeb}}</div>
                     </div>
+
                     <div class="mb-3">
                         <label for="" class="form-label">Descripcion</label>
-                        <input type="text" class="form-control">
+                        <input formControlName="Descripcion" type="text" class="form-control">
+                        <div *ngIf="formErrors.Descripcion" class="alert alert-danger mt-2" role="alert">{{formErrors.Descripcion}}</div>
                     </div>
+                    
                     <div class="mb-3">
                         <label for="" class="form-label">Usuario</label>
-                        <input type="text" class="form-control" placeholder="username@jobby.com">
+                        <input formControlName="Correo" type="text" class="form-control" placeholder="username@jobby.com">
+                        <div *ngIf="formErrors.Correo" class="alert alert-danger mt-2" role="alert">{{formErrors.Correo}}</div>
                     </div>
+
                     <div class="mb-3">
                         <label for="" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control">
+                        <input formControlName="Contrasenia" type="password" class="form-control">
+                        <div *ngIf="formErrors.Contrasenia" class="alert alert-danger mt-2" role="alert">{{formErrors.Contrasenia}}</div>
                     </div>
+
                     <div class="text-center">
-                        <button class="btn btn-primary" type="submit">Crear cuenta</button>
+                        <button [disabled]="FormularioEmpresa.invalid" class="btn btn-primary" type="submit">Crear cuenta</button>
                     </div>
                 </form>
             </div>
