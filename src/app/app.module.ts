@@ -11,6 +11,9 @@ import { LoginComponent } from './componentes/login/login.component';
 import { SigninEmpresasComponent } from './componentes/signin-empresas/signin-empresas.component';
 import { SigninEstudiantesComponent } from './componentes/signin-estudiantes/signin-estudiantes.component';
 
+// CHART MODULE
+import { ChartsModule } from 'ng2-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,8 @@ import { SigninEstudiantesComponent } from './componentes/signin-estudiantes/sig
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
