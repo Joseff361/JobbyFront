@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Empresa } from '../../shared/Empresa';
+import { Empresa } from '../../shared/Dto/Empresa';
+import { EmpresaService } from '../../services/empresa.service';
 
 @Component({
   selector: 'app-signin-empresas',
@@ -12,6 +13,10 @@ export class SigninEmpresasComponent implements OnInit {
 
   FormularioEmpresa: FormGroup;
   FormularioEmpresaDto: Empresa;
+
+  mensajeError: String;
+  mensajeExito: String;
+  cargando: Boolean = false;
 
   @ViewChild('fform') FormularioEmpresaDirectiva;
 
@@ -59,7 +64,8 @@ export class SigninEmpresasComponent implements OnInit {
   };
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private empresaService: EmpresaService
   ) { }
 
   ngOnInit(): void {
@@ -69,7 +75,7 @@ export class SigninEmpresasComponent implements OnInit {
   createForm(): void {
     this.FormularioEmpresa = this.fb.group({
       NombreDeEmpresa: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
-      Locacion: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(25)] ],
+      Locacion: ['', [Validators.required, Validators.minLength(5)] ],
       RUC: ['', [Validators.required] ],
       SitioWeb: ['', [Validators.required, Validators.minLength(11)]],
       Descripcion: ['', [Validators.required, Validators.minLength(5) ]],
@@ -110,19 +116,36 @@ export class SigninEmpresasComponent implements OnInit {
 
   onSubmit() {
     this.FormularioEmpresaDto = this.FormularioEmpresa.value;
-    console.log(this.FormularioEmpresaDto);
-    this.FormularioEmpresa.reset({
-      NombreDeEmpresa: '',
-      Locacion: '',
-      RUC: '',
-      SitioWeb: '',
-      Descripcion: '',
-      Correo: '',
-      Contrasenia: ''
-    });
+    this.mensajeError = null;
+    this.mensajeExito = null;
+    this.cargando = true;
+    
+    this.empresaService.registrarEmpresa(this.FormularioEmpresaDto)
+      .subscribe( data => {
 
-    this.FormularioEmpresaDirectiva.resetForm(); //ensure a completely reset
-    //#fform="ngForm"
+        this.cargando = false;
+
+        this.mensajeExito = data.mensaje;
+
+        this.FormularioEmpresa.reset({
+          NombreDeEmpresa: '',
+          Locacion: '',
+          RUC: '',
+          SitioWeb: '',
+          Descripcion: '',
+          Correo: '',
+          Contrasenia: ''
+        });
+    
+        this.FormularioEmpresaDirectiva.resetForm(); //ensure a completely reset
+        //#fform="ngForm"
+
+      }, err => {
+        this.mensajeError = err.error.mensaje;
+        this.cargando = false;
+      })
+
+      
   }
 
 }

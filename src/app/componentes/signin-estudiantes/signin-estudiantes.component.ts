@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Estudiante } from '../../shared/Estudiante';
+import { Estudiante } from '../../shared/Dto/Estudiante';
+import { EstudianteService } from '../../services/estudiante.service';
+
 
 @Component({
   selector: 'app-signin-estudiantes',
@@ -11,6 +13,10 @@ export class SigninEstudiantesComponent implements OnInit {
 
   FormularioEstudiante: FormGroup;
   FormularioEstudianteDto: Estudiante;
+
+  mensajeError: String;
+  mensajeExito: String;
+  cargando: Boolean = false;
 
   @ViewChild('ffform') FormularioEstudianteDirectiva;
 
@@ -44,7 +50,8 @@ export class SigninEstudiantesComponent implements OnInit {
   };
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private estudianteService: EstudianteService,
   ) { }
 
   ngOnInit(): void {
@@ -92,16 +99,32 @@ export class SigninEstudiantesComponent implements OnInit {
 
   onSubmit() {
     this.FormularioEstudianteDto = this.FormularioEstudiante.value;
-    console.log(this.FormularioEstudianteDto);
-    this.FormularioEstudiante.reset({
-      Nombre: '',
-      Apellido: '',
-      Correo: '',
-      Contrasenia: ''
-    });
+    
+    this.mensajeError = null;
+    this.mensajeExito = null;
+    this.cargando = true;
 
-    this.FormularioEstudianteDirectiva.resetForm(); //ensure a completely reset
-    //#fform="ngForm"
+    this.estudianteService.registrarEstudiante(this.FormularioEstudianteDto)
+      .subscribe( data => {
+
+        this.cargando = false;
+
+        this.mensajeExito = data.mensaje;
+
+        this.FormularioEstudiante.reset({
+          Nombre: '',
+          Apellido: '',
+          Correo: '',
+          Contrasenia: ''
+        });
+    
+        this.FormularioEstudianteDirectiva.resetForm(); //ensure a completely reset
+        //#fform="ngForm"
+
+      }, err => {
+        this.mensajeError = err.error.mensaje;
+        this.cargando = false;
+      })
   }
 
 }

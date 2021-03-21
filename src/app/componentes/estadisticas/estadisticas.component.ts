@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { barChartData, barChartLabels, barChartOptions, barChartLegend, barChartType } from '../../shared/BarChart';
-import { pieChartData, pieChartLabels, pieChartType, pieChartOptions, pieChartColors, pieChartLegend} from '../../shared/PieChart';
-import { radarChartData, radarChartOptions, radarChartLabels, radarChartType } from '../../shared/RadarChart';
+import { barChartData, barChartLabels, barChartOptions, barChartLegend, barChartType } from '../../shared/Charts/BarChart';
+import { pieChartData, pieChartLabels, pieChartType, pieChartOptions, pieChartColors, pieChartLegend} from '../../shared/Charts/PieChart';
+import { radarChartData, radarChartOptions, radarChartLabels, radarChartType } from '../../shared/Charts/RadarChart';
 
 @Component({
   selector: 'app-estadisticas',

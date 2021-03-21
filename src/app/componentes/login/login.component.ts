@@ -1,6 +1,8 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Login } from '../../shared/Login';
+import { Login } from '../../shared/Dto/Login';
+import { EstudianteService } from '../../services/estudiante.service';
+import { SesionStorageService } from '../../services/sesion-storage.service';
 
 
 @Component({
@@ -12,6 +14,10 @@ export class LoginComponent implements OnInit {
 
   FormularioLogin: FormGroup;
   FormularioLoginDto: Login;
+
+  mensajeError: String;
+  mensajeExito: String;
+  cargando: Boolean = false;
 
   @ViewChild('fffform') FormularioLoginDirectiva;
 
@@ -33,7 +39,9 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private estudianteService: EstudianteService,
+    private sesionStorageService: SesionStorageService 
   ) { }
 
   ngOnInit(): void {
@@ -79,14 +87,31 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.FormularioLoginDto = this.FormularioLogin.value;
-    console.log(this.FormularioLoginDto);
-    this.FormularioLogin.reset({
-      Correo: '',
-      Contrasenia: ''
-    });
+    
+    this.mensajeError = null;
+    this.mensajeExito = null;
+    this.cargando = true;
 
-    this.FormularioLoginDirectiva.resetForm(); //ensure a completely reset
-    //#fform="ngForm"
+    this.estudianteService.login(this.FormularioLoginDto)
+      .subscribe( data => {
+        this.cargando = false;
+
+        this.mensajeExito = "Login exitoso. Bienvenido!";
+
+        this.sesionStorageService.guardarCredenciales(data);
+
+        this.FormularioLogin.reset({
+          Correo: '',
+          Contrasenia: ''
+        });
+    
+        this.FormularioLoginDirectiva.resetForm(); //ensure a completely reset
+        //#fform="ngForm"
+        
+      }, err => {
+        this.mensajeError = err.error.mensaje;
+        this.cargando = false;
+      })
   }
 
 }
