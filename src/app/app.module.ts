@@ -15,6 +15,9 @@ import { SigninEstudiantesComponent } from './componentes/signin-estudiantes/sig
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -26,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     EmpresasComponent,
     LoginComponent,
     SigninEmpresasComponent,
-    SigninEstudiantesComponent
+    SigninEstudiantesComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,9 @@ import { HttpClientModule } from '@angular/common/http';
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

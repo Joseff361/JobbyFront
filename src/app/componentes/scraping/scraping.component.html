@@ -1,1 +1,34 @@
-<p>scraping works!</p>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="row mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="row my-4">
+                <h3>Ofertas de Empleo</h3>
+                <h5>Encuentra ofertas de empleo segun tu perfil</h5>
+            </div>
+            <div class="row" *ngIf="listaDeOfertas">
+
+                <div *ngFor="let oferta of listaDeOfertas" class="col-md-4">
+                    <div class="card mb-4 mx-auto" style="max-width: 18rem;">
+                        <div class="card-header">{{oferta.empresa}}</div>
+                        <div class="card-body">
+                          <h5 class="card-title truncate-title">{{oferta.titulo}}</h5>
+                          <div class="truncate-body">
+                            <p class="card-text">{{oferta.lugar}}</p>
+                            <footer class="blockquote-footer">{{oferta.area}}</footer>
+                          </div>
+                          <div class="de-flex">
+                            <a [href]="oferta.url_oferta" target="_blank"  class="btn btn-secondary">
+                                Ver oferta
+                            </a>
+                          </div>
+                        </div>
+                        <div class="card-footer">{{oferta.time_publicacion}}</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

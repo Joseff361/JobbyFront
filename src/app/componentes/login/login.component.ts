@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Login } from '../../shared/Dto/Login';
 import { EstudianteService } from '../../services/estudiante.service';
 import { SesionStorageService } from '../../services/sesion-storage.service';
+import { MensajeService } from '../../services/mensaje.service';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private estudianteService: EstudianteService,
-    private sesionStorageService: SesionStorageService 
+    private sesionStorageService: SesionStorageService,
+    private mensajeService: MensajeService
   ) { }
 
   ngOnInit(): void {
@@ -99,6 +101,8 @@ export class LoginComponent implements OnInit {
         this.mensajeExito = "Login exitoso. Bienvenido!";
 
         this.sesionStorageService.guardarCredenciales(data);
+
+        this.mensajeService.sendMessage(data.correo);
 
         this.FormularioLogin.reset({
           Correo: '',

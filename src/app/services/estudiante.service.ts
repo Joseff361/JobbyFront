@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { baseURL } from '../shared/Config';
+import { baseURL, baseURLWs } from '../shared/Config';
 import { UsuarioDto } from '../shared/Dto/UsuarioDto';
 import { Estudiante } from '../shared/Dto/Estudiante';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Login } from '../shared/Dto/Login';
+import { EstudianteDto } from '../shared/Dto/EstudianteDto';
 
 
 @Injectable({
@@ -36,5 +37,14 @@ export class EstudianteService {
       })
     };
     return this.http.post<any>(baseURL + '/api/estudiantes', estudiante, httpOptions);
+  }
+
+  public obtenerEstudiantePorusuario(usuario: UsuarioDto): Observable<EstudianteDto> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<EstudianteDto>(baseURL + '/api/estudianteInfo', usuario, httpOptions);    
   }
 }
