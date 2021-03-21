@@ -1,7 +1,13 @@
+@angular/animations
+MIT
+
 @angular/common
 MIT
 
 @angular/core
+MIT
+
+@angular/forms
 MIT
 
 @angular/platform-browser
@@ -102,6 +108,9 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 ng2-charts
 ISC
+
+ngx-spinner
+MIT
 
 rxjs
 Apache-2.0
