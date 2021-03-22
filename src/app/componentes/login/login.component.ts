@@ -4,6 +4,7 @@ import { Login } from '../../shared/Dto/Login';
 import { EstudianteService } from '../../services/estudiante.service';
 import { SesionStorageService } from '../../services/sesion-storage.service';
 import { MensajeService } from '../../services/mensaje.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -43,7 +44,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private estudianteService: EstudianteService,
     private sesionStorageService: SesionStorageService,
-    private mensajeService: MensajeService
+    private mensajeService: MensajeService,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
@@ -111,6 +113,10 @@ export class LoginComponent implements OnInit {
     
         this.FormularioLoginDirectiva.resetForm(); //ensure a completely reset
         //#fform="ngForm"
+
+        setTimeout(() => {
+          this.route.navigate(['/usuarios']);
+        }, 1000);
         
       }, err => {
         this.mensajeError = err.error.mensaje;

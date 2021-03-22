@@ -4,6 +4,8 @@ import { EmpresaDto } from '../shared/Dto/EmpresaDto';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Empresa } from '../shared/Dto/Empresa';
+import { UsuarioDto } from '../shared/Dto/UsuarioDto';
+
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +33,13 @@ export class EmpresaService {
     return this.http.post<any>(baseURL + '/api/empresas', empresa, httpOptions);
   }
 
+  public obtenerEmpresaPorusuario(usuario: UsuarioDto): Observable<EmpresaDto> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<EmpresaDto>(baseURL + '/api/empresaInfo', usuario, httpOptions);    
+  }
   
 }
