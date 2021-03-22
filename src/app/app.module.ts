@@ -20,6 +20,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoAreas1Component } from './componentes/info-areas1/info-areas1.component';
 import { InfoAreas2Component } from './componentes/info-areas2/info-areas2.component';
+import { OfertaEmpresaComponent } from './componentes/oferta-empresa/oferta-empresa.component';
+import { OfertaDetalleComponent } from './componentes/oferta-detalle/oferta-detalle.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { InfoAreas2Component } from './componentes/info-areas2/info-areas2.compo
     SigninEstudiantesComponent,
     UsuarioComponent,
     InfoAreas1Component,
-    InfoAreas2Component
+    InfoAreas2Component,
+    OfertaEmpresaComponent,
+    OfertaDetalleComponent
   ],
   imports: [
     BrowserModule,

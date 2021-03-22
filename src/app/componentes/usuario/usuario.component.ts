@@ -41,11 +41,14 @@ export class UsuarioComponent implements OnInit {
                                       this.sesionStorageService.obtenerContrasenia(),
                                       this.sesionStorageService.obtenerTipo());
 
+                                      
+
     if(this.sesionStorageService.obtenerTipo() == 'ESTUDIANTE'){
       this.tipo_estudiante = true;
       this.estudianteService.obtenerEstudiantePorusuario(this.usuario)
         .subscribe( data => {
           this.estudiante = data;
+          this.sesionStorageService.guardarIdTipo(this.estudiante.id);
           console.log(this.estudiante)
           this.spinner.hide();
         }, err => {
@@ -57,6 +60,7 @@ export class UsuarioComponent implements OnInit {
       this.empresaService.obtenerEmpresaPorusuario(this.usuario)
         .subscribe( data => {
           this.empresaDto = data;
+          this.sesionStorageService.guardarIdTipo(this.empresaDto.id);
           console.log(this.empresaDto);
           this.spinner.hide();
         }, err => {

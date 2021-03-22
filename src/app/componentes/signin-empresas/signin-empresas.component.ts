@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Empresa } from '../../shared/Dto/Empresa';
 import { EmpresaService } from '../../services/empresa.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-signin-empresas',
@@ -65,7 +67,8 @@ export class SigninEmpresasComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private empresaService: EmpresaService
+    private empresaService: EmpresaService,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
@@ -139,6 +142,10 @@ export class SigninEmpresasComponent implements OnInit {
     
         this.FormularioEmpresaDirectiva.resetForm(); //ensure a completely reset
         //#fform="ngForm"
+
+        setTimeout(() => {
+          this.route.navigate(['/login']);
+        }, 1000);
 
       }, err => {
         this.mensajeError = err.error.mensaje;

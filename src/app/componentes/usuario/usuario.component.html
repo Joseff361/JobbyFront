@@ -18,14 +18,15 @@
 <div class="row my-5" *ngIf="tipo_empresa">
 
     <!-- DATOS EMPRESA -->
-    <div class="col-md-5 mx-auto">
-        <div class="card" *ngIf="empresaDto">
+    <div class="col-md-4 mx-auto mt-1">
+        <h2 class="color-1">Descripcion</h2>
+        <div class="card mt-5" *ngIf="empresaDto">
             <div class="card-header text-center">{{empresaDto.usuario.tipo}}</div>
             <div class="card-body">
                 <h5 class="card-title text-center mb-2">{{empresaDto.nombreDeEmpresa}}</h5>
                 <img src="assets/img/company.png" alt="">
                 <h6 class="card-subtitle mb-2 text-muted text-center mt-2">{{empresaDto.locacion}}</h6>
-                <h5><b>Descripcion: </b>{{empresaDto.descripcion}}></h5>
+                <h5><b>Descripcion: </b>{{empresaDto.descripcion}}</h5>
                 <h5><b>Dominio: </b>{{empresaDto.sitioWeb}}</h5>
                 <h5><b>RUC: </b>{{empresaDto.ruc}}</h5>
                 <h5><b>CORREO: </b>{{empresaDto.usuario.correo}}</h5>
@@ -34,41 +35,11 @@
     </div>
     
     <!-- OFERTA EMPRESA-->
-    <div class="col-md-5 mx-auto">
-        <h2>Anunciar Oferta Laboral!</h2>
-        <div class="card" *ngIf="empresaDto">
-            <div class="card-body">
-                <form>
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Descripcion</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                      <div id="emailHelp" class="form-text">Detalle cuales seran las funciones que va a desarrollar el empleado .</div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Jornada</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Salario</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Requisitos</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Beneficios</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3 form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-block">Publicar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div class="col-md-7 mx-auto" *ngIf="empresaDto">
+        <app-oferta-empresa></app-oferta-empresa>
     </div>
+</div>
+
+<div class="row my-5">
+    <app-info-areas2></app-info-areas2>
 </div>

@@ -4,11 +4,19 @@ import { Label } from 'ng2-charts';
 
 
 export const barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+    { data: [65, 59, 80, 81, 56, 55, 40, 30], label: 'Febrero' },
+    { data: [28, 48, 40, 19, 86, 27, 90, 80], label: 'Marzo' }
 ]
 
-export const barChartLabels: Label[] = ['15-02-21', '16-02-21', '17-02-21', '18-02-21', '19-02-21', '20-02-21', '21-02-21'];
+export const barChartLabels: Label[] = [
+  'IA',
+  'Calidad',
+  'GPTI',
+  'SI',
+  'Redes',
+  'DBA',
+  'BI',
+  'Develop'];
 
 export const barChartOptions: ChartOptions = {
     responsive: true,

@@ -5,6 +5,7 @@ const ID_KEY = 'Id';
 const CORREO_KEY = 'Username';
 const CONTRASENIA_KEY = 'Password';
 const TIPO_KEY = 'Tipo';
+const ID_TIPO_KEY = 'IdTipo';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,14 @@ export class SesionStorageService {
 
   public obtenerTipo(): string {
     return sessionStorage.getItem(TIPO_KEY);
+  }
+
+  public guardarIdTipo(idTipo: Number): void{
+    window.sessionStorage.setItem(ID_TIPO_KEY, String(idTipo)); 
+  }
+
+  public obtenerIdTipo(): String{
+    return sessionStorage.getItem(ID_TIPO_KEY);
   }
 
   public logOut(): void {

@@ -7,8 +7,6 @@ export class EmpresaDto{
         public RUC: Number,
         public sitioWeb: String,
         public descripcion: String,
-        public correo: String,
-        public contrasenia: String,
         public pagoEmpresa: any,
         public id: number,
         public usuario: UsuarioDto
