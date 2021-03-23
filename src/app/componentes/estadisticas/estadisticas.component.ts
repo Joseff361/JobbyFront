@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { barChartData, barChartLabels, barChartOptions, barChartLegend, barChartType } from '../../shared/Charts/BarChart';
 import { pieChartData, pieChartLabels, pieChartType, pieChartOptions, pieChartColors, pieChartLegend} from '../../shared/Charts/PieChart';
 import { radarChartData, radarChartOptions, radarChartLabels, radarChartType } from '../../shared/Charts/RadarChart';
+import { WebscrapingService } from '../../services/webscraping.service';
+import { Estadistica } from '../../shared/Charts/Estadistica';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-estadisticas',
@@ -30,9 +33,80 @@ export class EstadisticasComponent implements OnInit {
   radarChartLabels: any;
   radarChartType: any;
 
-  constructor() { }
+  estadistica: Estadistica[];
+  ofertasMarzo: Estadistica[] = [];
+  ofertasFebrero: Estadistica[] = [];
+
+  cantidadFebrero: Number[] = [];
+  cantidadMarzo: Number[] = [];
+
+  constructor(
+    private webscrapingService: WebscrapingService
+  ) { }
 
   ngOnInit(): void {
+
+
+    this.webscrapingService.obtenerEstadisticas()
+      .subscribe( data => {
+        this.estadistica = data;
+        for(let et of this.estadistica){
+          if(et.mes == 'MARZO'){
+            this.ofertasMarzo.push(et);
+          }else{
+            this.ofertasFebrero.push(et);
+          }
+        }
+
+        // ORDENAR POR SEGUN ESPECIALIDAD
+        this.ofertasFebrero.sort(function (a, b) {
+          if (a.especialidad > b.especialidad) {
+            return 1;
+          }
+          if (a.especialidad < b.especialidad) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
+        });
+
+        this.ofertasMarzo.sort(function (a, b) {
+          if (a.especialidad > b.especialidad) {
+            return 1;
+          }
+          if (a.especialidad < b.especialidad) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
+        });
+
+        // CREAR UN ARRAY DE OFERTAS
+        for(let oferta of this.ofertasFebrero){
+          this.cantidadFebrero.push(oferta.cantidad);
+        }
+
+        for(let oferta of this.ofertasMarzo){
+          this.cantidadMarzo.push(oferta.cantidad);
+        }
+
+        // ASIGNAR AL BARCHART
+        this.barChartData[0].data = this.cantidadFebrero;
+        this.barChartData[1].data = this.cantidadMarzo;
+
+        // ASIGNAR AL PIE CHART
+        this.pieChartData = this.cantidadMarzo;
+
+        // ASIGNAR AL RADARCHART
+        this.radarChartData[0].data = this.cantidadFebrero;
+        this.radarChartData[1].data = this.cantidadMarzo;
+
+        console.log(this.cantidadFebrero)
+        console.log(this.cantidadMarzo)
+      }, err => {
+        console.log(err);
+      })
+
     // BARCHART
     this.barChartData = barChartData;
     this.barChartLabels = barChartLabels;

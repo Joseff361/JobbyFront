@@ -23,6 +23,8 @@ export class UsuarioComponent implements OnInit {
   empresaDto: EmpresaDto = null;
 
 
+  IdTipo: Number;
+
   constructor(
     private sesionStorageService: SesionStorageService,
     private estudianteService: EstudianteService,
@@ -49,6 +51,7 @@ export class UsuarioComponent implements OnInit {
         .subscribe( data => {
           this.estudiante = data;
           this.sesionStorageService.guardarIdTipo(this.estudiante.id);
+          this.IdTipo = this.estudiante.id;
           console.log(this.estudiante)
           this.spinner.hide();
         }, err => {
@@ -61,6 +64,7 @@ export class UsuarioComponent implements OnInit {
         .subscribe( data => {
           this.empresaDto = data;
           this.sesionStorageService.guardarIdTipo(this.empresaDto.id);
+          this.IdTipo = this.empresaDto.id;
           console.log(this.empresaDto);
           this.spinner.hide();
         }, err => {

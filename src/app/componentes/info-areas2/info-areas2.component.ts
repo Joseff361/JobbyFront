@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EmpresaService } from '../../services/empresa.service';
 import { OfertaPorEmpresa } from '../../shared/Dto/OfertaPorEmpresa';
 
@@ -10,19 +10,27 @@ import { OfertaPorEmpresa } from '../../shared/Dto/OfertaPorEmpresa';
 export class InfoAreas2Component implements OnInit {
 
   ofertasEmpleo: OfertaPorEmpresa[];
+  @Input() IdTipo: Number;
+
 
   constructor(
     private empresaService: EmpresaService
   ) { }
 
   ngOnInit(): void {
-    this.empresaService.obtenerOferfasEmpleoPorEmpresa()
+
+  }
+
+  ngOnChanges(): void{
+    if(this.IdTipo != null){
+      this.empresaService.obtenerOferfasEmpleoPorEmpresa()
       .subscribe( data => {
         this.ofertasEmpleo = data;
         console.log( this.ofertasEmpleo)
       }, err => {
         console.log(err);
       })
+    }
   }
 
 }

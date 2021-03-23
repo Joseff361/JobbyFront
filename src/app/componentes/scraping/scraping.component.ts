@@ -28,19 +28,21 @@ export class ScrapingComponent implements OnInit {
     this.webscrapingService.obtenerOfertasWebScraping()
       .subscribe( data => {
         this.listaDeOfertas = data;
-        this.spinner.hide();
+        this.empresaService.obtenerOferfasEmpleoTotales()
+        .subscribe( data => {
+          this.listaPremium = data;
+          this.spinner.hide();
+        }, err => {
+          console.log(err);
+          this.spinner.hide();
+        })
       }, err => {
         console.log(err);
         this.spinner.hide();
       })
 
     
-    this.empresaService.obtenerOferfasEmpleoTotales()
-    .subscribe( data => {
-      this.listaPremium = data;
-    }, err => {
-      console.log(err);
-    })
+
   }
 
   ofertaDetalle(ofertaDetalle: any): void{

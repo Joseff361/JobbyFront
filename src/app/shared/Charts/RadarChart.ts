@@ -2,8 +2,8 @@ import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 
 export const radarChartData: ChartDataSets[] = [
-    { data: [65, 59, 90, 81, 56, 55, 40], label: 'Mes de Marzo' },
-    { data: [28, 48, 40, 19, 96, 27, 100], label: 'Mes de Febrero' }
+    { data: [0, 0, 0, 0, 0, 0, 0, 0], label: 'Mes de Marzo' },
+    { data: [0, 0, 0, 0, 0, 0, 0, 0], label: 'Mes de Febrero' }
 ];
 
 export const radarChartOptions: RadialChartOptions = {
@@ -11,13 +11,14 @@ export const radarChartOptions: RadialChartOptions = {
 };
 
 export const radarChartLabels: Label[] = [
-    'Inteligencia Artificial',
-    'Ingenieria de Calidad',
+    'Analista de Base de Datos',
+    'Calidad de Software',
+    'Desarrolldor de Software',
     'Gerencia de Proyectos de TI',
+    'Inteligencia Artificial',
+    'Inteligencia de Negocios',
     'Seguridad Informatica',
     'Servidores y Redes',
-    'Analista de Base de Datos',
-    'Inteligencia de Negocios',
-    'Desarrolldor de Software'];
+    ];
 
 export const radarChartType: ChartType = 'radar';
