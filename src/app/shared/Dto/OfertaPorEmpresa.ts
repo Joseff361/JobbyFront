@@ -1,14 +1,14 @@
 import { EmpresaDto } from './EmpresaDto';
+import { EstudianteDto } from './EstudianteDto';
 export class OfertaPorEmpresa{
-    constructor(
-        public id: Number,
-	    public descripcion: String,
-	    public jornada: String,
-        public salario: String,
-        public requisitos: String,
-        public beneficios: String, 
-        public area: String ,
-        public fecha: Date,
-        public empresa: EmpresaDto
-    ){}
+    id: Number;
+	descripcion: String;
+	jornada: String;
+    salario: String;
+    requisitos: String;
+    beneficios: String; 
+    area: String;
+    fecha: Date;
+    empresa: EmpresaDto;
+    estudiantes: EstudianteDto[];
 }

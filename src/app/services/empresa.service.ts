@@ -9,6 +9,7 @@ import { OfertaEmpresaDto } from '../shared/Dto/OfertaEmpresaDto';
 import { SesionStorageService } from './sesion-storage.service';
 import { CredencialesDto } from '../shared/Dto/CredencialesDto';
 import { OfertaPorEmpresa } from '../shared/Dto/OfertaPorEmpresa';
+import { Postulacion } from '../shared/Dto/Postulacion';
 
 @Injectable({
   providedIn: 'root'

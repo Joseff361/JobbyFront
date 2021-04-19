@@ -5,7 +5,8 @@ import { Estudiante } from '../shared/Dto/Estudiante';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Login } from '../shared/Dto/Login';
-import { EstudianteDto } from '../shared/Dto/EstudianteDto';
+import { Curriculum, EstudianteDto } from '../shared/Dto/EstudianteDto';
+import { Postulacion } from '../shared/Dto/Postulacion';
 
 
 @Injectable({
@@ -46,5 +47,24 @@ export class EstudianteService {
       })
     };
     return this.http.post<EstudianteDto>(baseURL + '/api/estudianteInfo', usuario, httpOptions);    
+  }
+
+  public guardarCurriculum(curriculum: Curriculum, idEstudiante: String): Observable<Curriculum>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.http.post<any>(baseURL + "/api/curriculum/" + idEstudiante , curriculum, httpOptions);
+  }
+
+  public postularseAOferta(postulacion: Postulacion): Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<any>(baseURL + '/api/postularse', postulacion, httpOptions);
   }
 }

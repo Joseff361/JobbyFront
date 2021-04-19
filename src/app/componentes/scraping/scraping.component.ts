@@ -47,8 +47,8 @@ export class ScrapingComponent implements OnInit {
 
   ofertaDetalle(ofertaDetalle: any): void{
     console.log(ofertaDetalle);
-    this.route.navigate(['/oferta-detalle']);
     window.sessionStorage.setItem('OFERTA-DETALLE', JSON.stringify(ofertaDetalle));
+    this.route.navigate(['/oferta-detalle']);
   }
 
 }

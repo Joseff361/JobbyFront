@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Oferta } from 'src/app/shared/WebScrap/Oferta';
 import { EmpresaService } from '../../services/empresa.service';
 import { OfertaPorEmpresa } from '../../shared/Dto/OfertaPorEmpresa';
 
@@ -14,7 +16,8 @@ export class InfoAreas2Component implements OnInit {
 
 
   constructor(
-    private empresaService: EmpresaService
+    private empresaService: EmpresaService,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
@@ -26,11 +29,15 @@ export class InfoAreas2Component implements OnInit {
       this.empresaService.obtenerOferfasEmpleoPorEmpresa()
       .subscribe( data => {
         this.ofertasEmpleo = data;
-        console.log( this.ofertasEmpleo)
       }, err => {
         console.log(err);
       })
     }
+  }
+
+  verPostulantes(oferta: OfertaPorEmpresa): void{
+    window.sessionStorage.setItem('POSTULANTES', JSON.stringify(oferta.estudiantes));
+    this.route.navigate(['/postulantes']);
   }
 
 }

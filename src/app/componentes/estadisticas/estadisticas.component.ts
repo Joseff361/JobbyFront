@@ -4,7 +4,7 @@ import { pieChartData, pieChartLabels, pieChartType, pieChartOptions, pieChartCo
 import { radarChartData, radarChartOptions, radarChartLabels, radarChartType } from '../../shared/Charts/RadarChart';
 import { WebscrapingService } from '../../services/webscraping.service';
 import { Estadistica } from '../../shared/Charts/Estadistica';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-estadisticas',
@@ -41,12 +41,13 @@ export class EstadisticasComponent implements OnInit {
   cantidadMarzo: Number[] = [];
 
   constructor(
-    private webscrapingService: WebscrapingService
+    private webscrapingService: WebscrapingService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
 
-
+    this.spinner.show();
     this.webscrapingService.obtenerEstadisticas()
       .subscribe( data => {
         this.estadistica = data;
@@ -103,6 +104,7 @@ export class EstadisticasComponent implements OnInit {
 
         console.log(this.cantidadFebrero)
         console.log(this.cantidadMarzo)
+        this.spinner.hide();
       }, err => {
         console.log(err);
       })

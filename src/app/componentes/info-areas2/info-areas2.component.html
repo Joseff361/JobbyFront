@@ -13,7 +13,10 @@
                     <p class="card-title"><b>Beneficios: </b>{{oferta.beneficios}}</p>
                     <h6 class="card-subtitle mb-2 text-muted mt-2">{{oferta.empresa.locacion}}</h6>
                     <h6 class="card-subtitle mb-2 text-muted mt-2">{{oferta.empresa.sitioWeb}}</h6>
-                    <button class="btn btn-danger">Eliminar Oferta</button>                    
+                    <div class="botones">
+                        <button (click)="verPostulantes(oferta)" class="btn btn-success">Ver Postulantes</button>                    
+                        <button class="btn btn-danger mx-3">Eliminar Oferta</button>                    
+                    </div>
                 </div>
                 <div class="card-footer">
                     <p class="card-title"><b>Fecha: </b>{{oferta.fecha | date}}</p>

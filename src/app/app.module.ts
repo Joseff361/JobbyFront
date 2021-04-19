@@ -22,6 +22,8 @@ import { InfoAreas1Component } from './componentes/info-areas1/info-areas1.compo
 import { InfoAreas2Component } from './componentes/info-areas2/info-areas2.component';
 import { OfertaEmpresaComponent } from './componentes/oferta-empresa/oferta-empresa.component';
 import { OfertaDetalleComponent } from './componentes/oferta-detalle/oferta-detalle.component';
+import { CurriculumComponent } from './componentes/curriculum/curriculum.component';
+import { PostulantesComponent } from './componentes/postulantes/postulantes.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { OfertaDetalleComponent } from './componentes/oferta-detalle/oferta-deta
     InfoAreas1Component,
     InfoAreas2Component,
     OfertaEmpresaComponent,
-    OfertaDetalleComponent
+    OfertaDetalleComponent,
+    CurriculumComponent,
+    PostulantesComponent
   ],
   imports: [
     BrowserModule,

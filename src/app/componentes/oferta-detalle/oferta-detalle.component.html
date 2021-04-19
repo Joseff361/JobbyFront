@@ -20,9 +20,25 @@
                             <p class="card-title"><b>Beneficios: </b>{{oferta.beneficios}}</p>
                             <h6 class="card-subtitle mb-2 text-muted mt-2">{{oferta.empresa.locacion}}</h6>
                             <h6 class="card-subtitle mb-2 text-muted mt-2">{{oferta.empresa.sitioWeb}}</h6>
-                            <button (click)="volver()" class="btn btn-danger mx-3">Volver</button>  
-                            <button class="btn btn-success mx-3">Postular</button>  
-                            <button class="btn btn-warning mx-3">Adjuntar CV</button>                    
+                            <div class="botones">
+                                <button (click)="volver()" class="btn btn-danger mx-3">Volver</button>  
+                                <button (click)="postular()" class="btn btn-success mx-3">Postular</button>  
+                                <button class="btn btn-warning mx-3">Adjuntar CV</button>
+                            </div>  
+                            
+                            <!-- RESULTADO -->
+                            <div class="mt-3 text-center">
+                                <div>
+                                    <div class="spinner" *ngIf="cargando">
+                                        <div class="bounce1"></div>
+                                        <div class="bounce2"></div>
+                                        <div class="bounce3"></div>
+                                    </div>
+                                </div>
+                                <div *ngIf="mensajeError" class="alert alert-danger" role="alert">{{mensajeError}}</div>
+                                <div *ngIf="mensajeExito" class="alert alert-success" role="alert">{{mensajeExito}}</div>
+                            </div>
+
                         </div>
                         <div class="card-footer">
                             <p class="card-title"><b>Fecha: </b>{{oferta.fecha | date}}</p>

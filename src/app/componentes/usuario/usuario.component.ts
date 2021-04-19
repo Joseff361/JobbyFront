@@ -52,7 +52,6 @@ export class UsuarioComponent implements OnInit {
           this.estudiante = data;
           this.sesionStorageService.guardarIdTipo(this.estudiante.id);
           this.IdTipo = this.estudiante.id;
-          console.log(this.estudiante)
           this.spinner.hide();
         }, err => {
           console.log(err);

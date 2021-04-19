@@ -1,17 +1,10 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 
 <!-- ESTUDIANTE -->
-<div class="row mt-5" *ngIf="tipo_estudiante">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">{{estudiante.usuario.tipo}}</div>
-            <div class="card-body">
-                <h5 class="card-title">{{estudiante.nombre}} {{estudiante.apellido}}</h5>
-                <p class="card-text">{{estudiante.usuario.correo}}</p>
-            </div>
-        </div>
+<div class="row my-5" *ngIf="tipo_estudiante && estudiante">
+    <div class="col-md-8 mx-auto">
+        <app-curriculum [estudiante]="estudiante"></app-curriculum>
     </div>
-    <div class="col-md-6">cv</div>
 </div>
 
 <!-- EMPRESA -->
@@ -40,6 +33,6 @@
     </div>
 </div>
 
-<div class="row my-5">
+<div class="row my-5" *ngIf="empresaDto">
     <app-info-areas2 [IdTipo]="IdTipo"></app-info-areas2>
 </div>
