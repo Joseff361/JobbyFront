@@ -24,6 +24,7 @@ import { OfertaEmpresaComponent } from './componentes/oferta-empresa/oferta-empr
 import { OfertaDetalleComponent } from './componentes/oferta-detalle/oferta-detalle.component';
 import { CurriculumComponent } from './componentes/curriculum/curriculum.component';
 import { PostulantesComponent } from './componentes/postulantes/postulantes.component';
+import { TensorflowComponent } from './componentes/tensorflow/tensorflow.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { PostulantesComponent } from './componentes/postulantes/postulantes.comp
     OfertaEmpresaComponent,
     OfertaDetalleComponent,
     CurriculumComponent,
-    PostulantesComponent
+    PostulantesComponent,
+    TensorflowComponent
   ],
   imports: [
     BrowserModule,

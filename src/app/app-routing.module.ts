@@ -7,6 +7,7 @@ import { PostulantesComponent } from './componentes/postulantes/postulantes.comp
 import { ScrapingComponent } from './componentes/scraping/scraping.component';
 import { SigninEmpresasComponent } from './componentes/signin-empresas/signin-empresas.component';
 import { SigninEstudiantesComponent } from './componentes/signin-estudiantes/signin-estudiantes.component';
+import { TensorflowComponent } from './componentes/tensorflow/tensorflow.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'usuarios', component: UsuarioComponent},
   { path: 'scraping', component: ScrapingComponent},
   { path: 'postulantes', component: PostulantesComponent},
+  { path: 'tensorflow', component: TensorflowComponent},
   { path: 'oferta-detalle', component: OfertaDetalleComponent},
   { path: '', redirectTo: '/estadisticas', pathMatch: 'full'},
   { path: '**', component: EstadisticasComponent}

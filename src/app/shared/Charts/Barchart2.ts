@@ -1,23 +1,20 @@
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
-//import * as pluginDataLabels from 'chartjs-plugin-datalabels';
-
 
 export const barChartData: ChartDataSets[] = [
-    { data: [0, 0, 0, 0, 0, 0, 5, 0], label: 'Marzo' },
-    { data: [0, 0, 0, 0, 0, 0, 0, 0], label: 'Abril' }
+    { data: [0, 0, 0, 0, 0, 0, 0, 0], label: 'Febrero' }
 ]
 
 export const barChartLabels: Label[] = [
-  'DBA',
-  'Calidad',
-  'Develop',
-  'GPTI',
-  'IA',
-  'BI',
-  'SI',
-  'Redes',
-  ];
+    'DBA',
+    'Calidad',
+    'Develop',
+    'GPTI',
+    'IA',
+    'BI',
+    'SI',
+    'Redes',
+];
 
 export const barChartOptions: ChartOptions = {
     responsive: true,

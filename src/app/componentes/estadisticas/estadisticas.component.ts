@@ -54,7 +54,7 @@ export class EstadisticasComponent implements OnInit {
         for(let et of this.estadistica){
           if(et.mes == 'MARZO'){
             this.ofertasMarzo.push(et);
-          }else{
+          }else if (et.mes == 'FEBRERO'){
             this.ofertasFebrero.push(et);
           }
         }
@@ -91,6 +91,12 @@ export class EstadisticasComponent implements OnInit {
           this.cantidadMarzo.push(oferta.cantidad);
         }
 
+        /****  ELIMNIAR LUEGO DE PRUEBA ****/
+        this.cantidadFebrero.push(10)
+        this.cantidadFebrero.push(5)
+        /**** ELIMNIAR LUEGO DE PRUEBA ****/
+
+
         // ASIGNAR AL BARCHART
         this.barChartData[0].data = this.cantidadFebrero;
         this.barChartData[1].data = this.cantidadMarzo;
@@ -102,8 +108,9 @@ export class EstadisticasComponent implements OnInit {
         this.radarChartData[0].data = this.cantidadFebrero;
         this.radarChartData[1].data = this.cantidadMarzo;
 
-        console.log(this.cantidadFebrero)
-        console.log(this.cantidadMarzo)
+        window.localStorage.setItem('MARZO', JSON.stringify(this.cantidadFebrero));
+        window.localStorage.setItem('ABRIL', JSON.stringify(this.cantidadMarzo));
+
         this.spinner.hide();
       }, err => {
         console.log(err);
