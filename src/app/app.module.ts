@@ -26,6 +26,8 @@ import { CurriculumComponent } from './componentes/curriculum/curriculum.compone
 import { PostulantesComponent } from './componentes/postulantes/postulantes.component';
 import { TensorflowComponent } from './componentes/tensorflow/tensorflow.component';
 
+import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { TensorflowComponent } from './componentes/tensorflow/tensorflow.compone
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
